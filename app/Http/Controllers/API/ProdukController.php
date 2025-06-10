@@ -1,22 +1,26 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
-use App\Models\Produk;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class ProdukController extends Controller {
-    public function index() {
+class ProdukController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
         $produk = Produk::all(); // Ambil semua produk dari database
-        return view('produk.index', compact('produk'));
+        return response()->json(['success' => true, 'data' => $produks], 200);
     }
 
-    public function create() {
-        return view('produk.create'); 
-    }
-
+    /**
+     * Store a newly created resource in storage.
+     */
     public function store(Request $request) {
-        $request->validate([
+    $request->validate([
             'nama' => 'required|string',
             'deskripsi' => 'nullable|string',
             'harga' => 'required|numeric',
@@ -43,28 +47,33 @@ class ProdukController extends Controller {
         return response()->json($produk, 201);
     }
 
-    public function show($id) {
-        return response()->json(Produk::findOrFail($id), 200);
-    }
-
-    public function edit(string $id)
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
     {
-        $row = produk::findOrFail($id);
-        return view('produk.edit', compact('item'));
-    }
-    
+        return response()->json(Produk::findOrFail($id), 200);
 
-    public function update(Request $request, $id) {
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
         $produk = Produk::findOrFail($id);
         $produk->update($request->all());
         return response()->json($produk, 200);
     }
 
-    public function destroy($id) {
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
         $produk = Produk::findOrFail($id);
         $produk->delete();
         return redirect('/produk');
-      
-        // return redirect('produk'); 
+        return response()->json(['success' => true, 'message' => 'Menu berhasil dihapus.'], 200);
     }
-};
+}

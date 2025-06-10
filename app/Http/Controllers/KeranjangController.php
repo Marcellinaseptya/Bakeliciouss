@@ -3,28 +3,59 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Produk;
 
 class KeranjangController extends Controller
 {
-    public function index()
+    public function tambah(Request $request)
     {
-        $keranjang = Keranjang::where('user_id', auth()->id())->with('produk')->get();
-        return view('keranjang.index', compact('keranjang'));
+        $id_produk = $request->id_produk;
+        $jumlah = $request->jumlah;
+
+        $produk = Produk::findOrFail($id_produk);
+
+        $keranjang = session()->get('keranjang', []);
+
+        if (isset($keranjang[$id_produk])) {
+            $keranjang[$id_produk]['jumlah'] += $jumlah;
+        } else {
+            $keranjang[$id_produk] = [
+                'nama' => $produk->nama,
+                'harga' => $produk->harga,
+                'gambar' => $produk->gambar,
+                'jumlah' => $jumlah
+            ];
+        }
+
+        session()->put('keranjang', $keranjang);
+
+        return redirect()->back()->with('success', 'Produk berhasil ditambahkan ke keranjang!');
     }
 
-    public function tambah(Request $request, $id)
+    public function index()
     {
-        if (!auth()->check()) {
-            return redirect('/login')->with('error', 'Silakan login dulu untuk membeli!');
+        $keranjang = session()->get('keranjang', []);
+        $total = 0;
+        // dd($keranjang);
+        foreach ($keranjang as $item) {
+            $total += $item['harga'] * $item['jumlah'];
         }
-    
-        $produk = Produk::findOrFail($id);
-        Keranjang::create([
-            'user_id' => auth()->id(),
-            'produk_id' => $produk->id,
-            'jumlah' => 1
-        ]);
-    
-        return redirect()->back()->with('success', 'Produk ditambahkan ke keranjang!');
+
+        return view('keranjang.index', compact('keranjang', 'total'));
     }
+
+    public function hapus($id)
+{
+     $keranjang = session()->get('keranjang', []);
+
+    if (isset($keranjang[$id])) {
+        unset($keranjang[$id]);
+        session()->put('keranjang', $keranjang);
+        return redirect()->route('keranjang.index')->with('success', 'Produk berhasil dihapus dari keranjang.');
+    }
+
+    return redirect()->route('keranjang.index')->with('error', 'Produk tidak ditemukan di keranjang.');
+}
+
+
 }

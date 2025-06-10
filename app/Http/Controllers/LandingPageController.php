@@ -9,7 +9,7 @@ class LandingPageController extends Controller
 {
     public function index()
     {
-        $produkUnggulan = Produk::all(); // Ambil 4 produk terbaru
+        $produkUnggulan = Produk::all(); 
         return view('landing', compact('produkUnggulan'));
     }
 }
