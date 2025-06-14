@@ -17,8 +17,10 @@ class Pertanyaan extends Model
         'isi',
     ];
 
-    public function jawabans()
-    {
-        return $this->hasMany(Jawaban::class);
-    }
+    // app/Models/Pertanyaan.php
+public function jawabans()
+{
+    return $this->hasMany(Jawaban::class, 'pertanyaan_id');
+}
+
 }

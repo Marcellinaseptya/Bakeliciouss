@@ -7,6 +7,9 @@ use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\KomunitasController;
+use App\Http\Controllers\TransaksiController;
+
+
 
 Route::get('/', [LandingPageController::class, 'index'])->name('landing');
 
@@ -27,14 +30,24 @@ Route::post('/keranjang/tambah', [KeranjangController::class, 'store'])->name('k
 Route::delete('/keranjang/hapus/{id}', [KeranjangController::class, 'hapus'])->name('keranjang.hapus');
 
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
-Route::post('/checkout', [CheckoutController::class, 'proses'])->name('checkout.proses');
 Route::post('/checkout', [CheckoutController::class, 'prosesCheckout'])->name('checkout');
 Route::get('/riwayat', [CheckoutController::class, 'riwayat'])->name('checkout.riwayat');
 
 
+Route::get('/transaksi/{id}/isi-data', [CheckoutController::class, 'formIsiData'])->name('transaksi.form.isiData');
+Route::post('/transaksi/{id}/isi-data', [CheckoutController::class, 'simpanDataPelanggan'])->name('transaksi.simpanDataPelanggan');
+
+
+
+Route::get('/riwayat-transaksi', [TransaksiController::class, 'riwayat'])->name('transaksi.riwayat');
+Route::get('/tentang_kami', [TransaksiController::class, 'index'])->name('tentang.index');
+
 
 Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
 
+// Route::get('/tentang-kami', function () {
+//     return view('tentang');
+// })->name('tentang');
 
 
 

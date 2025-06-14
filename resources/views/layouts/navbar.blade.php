@@ -101,9 +101,9 @@ body {
       <li><a href="{{ route('landing') }}">Home</a></li>
       <li><a href="{{ route('produk.index') }}">Produk</a></li>
       <li><a href="{{ route('keranjang.index') }}">Keranjang</a></li>
-      <li><a href="#">Riwayat</a></li>
+      <li><a href="{{ route('transaksi.riwayat') }}">Riwayat</a></li>
       <li><a href="{{ route('komunitas.index') }}">Komunitas</a></li>
-      <li><a href="#">Tentang Kami</a></li>
+      <li><a href="{{ route('tentang.index') }}">Tentang Kami</a></li>
     </ul>
   </nav>
   <div class="auth-buttons">

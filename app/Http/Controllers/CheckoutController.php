@@ -28,12 +28,15 @@ class CheckoutController extends Controller
             $transaksi = Transaksi::create([
                 'total' => $total,
                 'status' => 'pending',
+                'nama_pelanggan' => null,
+                'alamat' => null,
+                'no_hp' => null,
             ]);
 
-            // Simpan ke tabel detail_transaksi
+            // Simpan ke detail_transaksi
             foreach ($keranjang as $id_produk => $item) {
                 DetailTransaksi::create([
-                    'transaksi_id' => $transaksi->id_transaksi,
+                    'transaksi_id' => $transaksi->id,
                     'id_produk' => $id_produk,
                     'nama_produk' => $item['nama'],
                     'harga' => $item['harga'],
@@ -41,15 +44,43 @@ class CheckoutController extends Controller
                 ]);
             }
 
-            // Hapus isi keranjang
             session()->forget('keranjang');
-
             DB::commit();
 
-            return redirect()->route('transaksi.riwayat')->with('success', 'Checkout berhasil!');
+            // Arahkan ke form isi data
+            return redirect()->route('transaksi.form.isiData', ['id' => $transaksi->id])
+                 ->with('success', 'Checkout berhasil!');
+
         } catch (\Exception $e) {
             DB::rollback();
             return redirect()->back()->with('error', 'Gagal checkout: ' . $e->getMessage());
         }
     }
+
+    // Form untuk mengisi data pelanggan
+    public function formIsiData($id)
+    {
+        $transaksi = Transaksi::findOrFail($id);
+        return view('transaksi.isi_data', compact('transaksi'));
+    }
+
+    // Menyimpan data pelanggan
+    public function simpanDataPelanggan(Request $request, $id)
+    {
+        $request->validate([
+            'nama_pelanggan' => 'required|string|max:255',
+            'alamat' => 'required|string',
+            'no_hp' => 'required|string|max:20',
+        ]);
+
+        $transaksi = Transaksi::findOrFail($id);
+        $transaksi->update([
+            'nama_pelanggan' => $request->nama_pelanggan,
+            'alamat' => $request->alamat,
+            'no_hp' => $request->no_hp,
+        ]);
+
+        return redirect()->route('transaksi.riwayat')->with('success', 'Data pelanggan berhasil disimpan!');
+    }
+    
 }

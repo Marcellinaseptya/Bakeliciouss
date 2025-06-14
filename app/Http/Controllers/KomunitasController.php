@@ -8,10 +8,11 @@ use App\Models\Jawaban;
 
 class KomunitasController extends Controller
 {
-
     public function index()
     {
+        // Ambil semua pertanyaan beserta jawaban yang terkait
         $pertanyaans = Pertanyaan::with('jawabans')->latest()->get();
+
         return view('komunitas.index', compact('pertanyaans'));
     }
 
@@ -54,3 +55,4 @@ class KomunitasController extends Controller
         return view('komunitas.show', compact('pertanyaan'));
     }
 }
+    

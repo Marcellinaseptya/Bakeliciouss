@@ -12,12 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('detail_transaksi', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('transaksi_id')->constrained('transaksi')->onDelete('cascade');
-            $table->unsignedBigInteger('id_produk');
-            $table->string('nama_produk');
-            $table->integer('harga');
-            $table->integer('jumlah');
+        $table->id();
+        $table->foreignId('transaksi_id')->constrained('transaksi')->onDelete('cascade');
+        $table->unsignedBigInteger('id_produk');
+        $table->string('nama_produk');
+        $table->integer('harga');
+        $table->integer('jumlah');
+        $table->timestamps(); // ✅ Tambahkan baris ini
     });
 
     }

@@ -11,11 +11,9 @@ class Jawaban extends Model
 
     protected $table = 'jawaban'; // <- atau 'jawabans' jika itu nama tabelmu
 
-    protected $fillable = [
-        'pertanyaan_id',
-        'nama',
-        'isi',
-    ];
+    // app/Models/Jawaban.php
+    protected $fillable = ['pertanyaan_id', 'nama', 'isi'];
+
 
     public function pertanyaan()
     {

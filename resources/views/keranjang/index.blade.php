@@ -50,14 +50,13 @@
             </tbody>
         </table>
 
-        @if(count($keranjang) > 0)
-    <div style="margin-top: 20px; text-align: right;">
-        <form action="{{ route('checkout') }}" method="POST">
-            @csrf
-            <button type="submit" class="checkout-btn">Checkout Sekarang</button>
-        </form>
-    </div>
-@endif
+        <div style="margin-top: 20px; text-align: right;">
+    <form action="{{ route('checkout') }}" method="POST">
+        @csrf
+        <button type="submit" class="checkout-btn">Checkout Sekarang</button>
+    </form>
+</div>
+
 
 
     @else
