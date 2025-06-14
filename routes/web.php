@@ -4,9 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\LandingPageController;
-use App\Http\Controllers\KategoriController;
-use App\Http\Controllers\TransaksiController;
-use App\Http\Controllers\RiwayatTransaksiController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\KomunitasController;
 
@@ -16,32 +14,27 @@ Route::get('/about', function () {
     return view('about');
 })->name('about');
 
+
 Route::get('/produk', [ProdukController::class, 'index'])->name('produk.index');
-Route::get('/produk/tambah', [ProdukController::class, 'create'])->name('produk.create');
-Route::post('/produk/store', [ProdukController::class, 'store'])->name('produk.store');
-Route::patch('/produk', [ProdukController::class, 'edit'])->name('produk.edit');
+Route::get('/produk/store', [ProdukController::class, 'create'])->name('produk.create');
+Route::post('/produk', [ProdukController::class, 'store'])->name('produk.store');
+Route::get('/produk/{id}/edit', [ProdukController::class, 'edit'])->name('produk.edit'); // ✅ diperbaiki
+Route::patch('/produk/{id}', [ProdukController::class, 'update'])->name('produk.update');
 Route::delete('/produk/{id}', [ProdukController::class, 'destroy'])->name('produk.destroy');
 
 Route::get('/keranjang', [KeranjangController::class, 'index'])->name('keranjang.index');
-Route::post('/keranjang/tambah', [KeranjangController::class, 'tambah'])->name('keranjang.tambah');
-Route::post('/keranjang/checkout', [KeranjangController::class, 'checkout'])->name('keranjang.checkout');
-// Route::delete('/keranjang/hapus/{id}', [KeranjangController::class, 'hapus'])->name('keranjang.hapus');
+Route::post('/keranjang/tambah', [KeranjangController::class, 'store'])->name('keranjang.tambah');
+Route::delete('/keranjang/hapus/{id}', [KeranjangController::class, 'hapus'])->name('keranjang.hapus');
 
-Route::resource('kategori', KategoriController::class)->only([
-    'index', 'create', 'store', 'edit', 'update', 'destroy'
-]);
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+Route::post('/checkout', [CheckoutController::class, 'proses'])->name('checkout.proses');
+Route::post('/checkout', [CheckoutController::class, 'prosesCheckout'])->name('checkout');
+Route::get('/riwayat', [CheckoutController::class, 'riwayat'])->name('checkout.riwayat');
 
-Route::resource('transaksi', TransaksiController::class)->only([
-    'index', 'store'
-]);
 
-Route::resource('riwayat_transaksi', RiwayatTransaksiController::class)->only([
-    'index'
-]);
 
-Route::resource('rating', RatingController::class)->only([
-    'store'
-]);
+Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
+
 
 
 

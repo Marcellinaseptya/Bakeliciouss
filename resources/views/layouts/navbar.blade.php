@@ -1,7 +1,7 @@
 <style>/* CSS */
 body {
   margin: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family:  sans-serif;
 }
 
 .navbar {
@@ -9,7 +9,7 @@ body {
   align-items: center;
   justify-content: space-between;
   background-color: #462826;
-  padding: 1rem 2rem;
+  padding: 1rem 1rem;
   color: white;
 }
 
@@ -99,6 +99,7 @@ body {
   <nav>
     <ul class="nav-links">
       <li><a href="{{ route('landing') }}">Home</a></li>
+      <li><a href="{{ route('produk.index') }}">Produk</a></li>
       <li><a href="{{ route('keranjang.index') }}">Keranjang</a></li>
       <li><a href="#">Riwayat</a></li>
       <li><a href="{{ route('komunitas.index') }}">Komunitas</a></li>
@@ -107,6 +108,10 @@ body {
   </nav>
   <div class="auth-buttons">
     <button class="signin">Sign in</button>
-    <button class="register">Register</button>
   </div>
 </header>
+
+<!-- ⬇️ Tambahkan ini -->
+<div class="container" style="padding: 2rem;">
+    @yield('content')
+</div>

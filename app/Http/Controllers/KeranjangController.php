@@ -7,8 +7,14 @@ use App\Models\Produk;
 
 class KeranjangController extends Controller
 {
-    public function tambah(Request $request)
+    // Menambahkan produk ke keranjang
+    public function store(Request $request)
     {
+        $request->validate([
+            'id_produk' => 'required|exists:produk,id_produk', 
+            'jumlah' => 'required|integer|min:1'
+        ]);
+
         $id_produk = $request->id_produk;
         $jumlah = $request->jumlah;
 
@@ -32,11 +38,12 @@ class KeranjangController extends Controller
         return redirect()->back()->with('success', 'Produk berhasil ditambahkan ke keranjang!');
     }
 
+    // Menampilkan isi keranjang
     public function index()
     {
         $keranjang = session()->get('keranjang', []);
         $total = 0;
-        // dd($keranjang);
+
         foreach ($keranjang as $item) {
             $total += $item['harga'] * $item['jumlah'];
         }
@@ -44,18 +51,17 @@ class KeranjangController extends Controller
         return view('keranjang.index', compact('keranjang', 'total'));
     }
 
+    // Menghapus item dari keranjang
     public function hapus($id)
-{
-     $keranjang = session()->get('keranjang', []);
+    {
+        $keranjang = session()->get('keranjang', []);
 
-    if (isset($keranjang[$id])) {
-        unset($keranjang[$id]);
-        session()->put('keranjang', $keranjang);
-        return redirect()->route('keranjang.index')->with('success', 'Produk berhasil dihapus dari keranjang.');
+        if (isset($keranjang[$id])) {
+            unset($keranjang[$id]);
+            session()->put('keranjang', $keranjang);
+            return redirect()->route('keranjang.index')->with('success', 'Produk berhasil dihapus dari keranjang.');
+        }
+
+        return redirect()->route('keranjang.index')->with('error', 'Produk tidak ditemukan di keranjang.');
     }
-
-    return redirect()->route('keranjang.index')->with('error', 'Produk tidak ditemukan di keranjang.');
-}
-
-
 }

@@ -1,0 +1,46 @@
+.keranjang-container {
+    padding: 2rem;
+    max-width: 800px;
+    margin: auto;
+}
+
+.keranjang-container h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.keranjang-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.keranjang-table th,
+.keranjang-table td {
+    padding: 1rem;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.keranjang-table img {
+    border-radius: 8px;
+    max-height: 80px;
+    margin-bottom: 0.5rem;
+}
+
+.hapus-btn {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.hapus-btn:hover {
+    background-color: #c82333;
+}
+
+.total-row td {
+    font-weight: bold;
+    background-color: #f9f9f9;
+}

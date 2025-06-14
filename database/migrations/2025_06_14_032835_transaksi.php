@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('kategori', function (Blueprint $table) {
-            $table->bigIncrements('id_kategori');
-            $table->string('nama');
-            $table->text('deskripsi');
-            $table->string('gambar');
+        Schema::create('transaksi', function (Blueprint $table) {
+            $table->id();
+            $table->string('nama_pelanggan');
+            $table->string('alamat');
+            $table->string('no_hp');
+            $table->integer('total');
             $table->timestamps();
-        });
+    });
+
     }
 
     /**
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('kategori');
+        //
     }
 };
