@@ -16,7 +16,7 @@
 
 .keranjang-table th,
 .keranjang-table td {
-    padding: 1rem;
+    margin-left: 10px;
     text-align: center;
     border-bottom: 1px solid #ddd;
 }
@@ -43,4 +43,472 @@
 .total-row td {
     font-weight: bold;
     background-color: #f9f9f9;
+}
+/* keranjang.css - Versi Card Lebih Kecil, Spasi Lega, dan Sel Tabel Lebih Luas */
+
+/* --- General Styling --- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F8F5EE;
+    color: #333;
+    overflow-x: hidden;
+}
+
+/* --- Container Utama --- */
+.keranjang-container {
+    max-width: 1000px;
+    margin: 80px auto;
+    padding: 0 30px;
+}
+
+.keranjang-container h1 {
+    font-size: 2.6em;
+    color: #5A3F33;
+    text-align: center;
+    margin-bottom: 60px;
+    font-weight: bold;
+}
+
+/* --- Alert Messages --- */
+.alert {
+    padding: 15px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    font-size: 1em;
+    text-align: center;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* --- Keranjang Content (Dua Kolom) --- */
+.keranjang-content {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+/* --- Card Item Keranjang (Kiri) --- */
+.keranjang-items-card {
+    flex: 2;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+    padding: 35px;
+}
+
+.keranjang-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 20px; /* Spasi antar baris item tetap lega */
+}
+
+.keranjang-table thead th {
+    font-weight: bold;
+    color: #5A3F33;
+    padding: 18px 25px; /* DITINGKATKAN: Padding horizontal pada header tabel */
+    font-size: 1.05em;
+    border-bottom: 1px solid #eee;
+}
+
+/* Penjajaran Header Tabel */
+.keranjang-table thead th:nth-child(1) { text-align: left; } /* Produk */
+.keranjang-table thead th:nth-child(2) { text-align: left; } /* Harga */
+.keranjang-table thead th:nth-child(3) { text-align: center; } /* Jumlah */
+.keranjang-table thead th:nth-child(4) { text-align: right; } /* Subtotal */
+.keranjang-table thead th:nth-child(5) { text-align: center; } /* Aksi */
+
+
+/* Styling untuk setiap baris item (tbody td) */
+.keranjang-table tbody td {
+    padding: 18px 25px; /* DITINGKATKAN: Padding horizontal pada sel data tabel */
+    vertical-align: middle;
+    font-size: 0.95em;
+    color: #555;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border-radius: 12px;
+    border: 1px solid #f0f0f0;
+}
+
+/* Penjajaran Konten Tabel */
+.keranjang-table tbody td:nth-child(2) { text-align: left; } /* Harga */
+.keranjang-table tbody td:nth-child(3) { text-align: center; } /* Jumlah */
+.keranjang-table tbody td:nth-child(4) { text-align: right; } /* Subtotal */
+.keranjang-table tbody td:nth-child(5) { text-align: center; } /* Aksi */
+
+
+/* Styling for Product Info column */
+.product-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.product-info img {
+    width: 65px;
+    height: 65px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid #eee;
+}
+
+.product-name {
+    font-weight: bold;
+    color: #333;
+    font-size: 1em;
+    margin-bottom: 5px;
+}
+
+.product-description {
+    font-size: 0.8em;
+    color: #888;
+}
+
+/* Styling for Quantity Control */
+.quantity-control {
+    text-align: center;
+}
+
+.quantity-form {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: #f9f9f9;
+}
+
+.qty-btn {
+    background-color: transparent;
+    border: none;
+    color: #5A3F33;
+    padding: 8px 14px;
+    cursor: pointer;
+    font-size: 1.05em;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+}
+
+.qty-btn:hover {
+    background-color: #eee;
+}
+
+.qty-input {
+    width: 40px; /* DITINGKATKAN: Lebar input kuantitas */
+    text-align: center;
+    border: none;
+    padding: 8px 0;
+    font-size: 0.95em;
+    -moz-appearance: textfield;
+    background-color: #f9f9f9;
+    color: #333;
+    font-weight: bold;
+}
+
+.qty-input::-webkit-outer-spin-button,
+.qty-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Styling for Action (Delete) Button */
+.action-cell {
+    text-align: center;
+}
+
+.hapus-btn {
+    background: none;
+    border: none;
+    color: #aaa;
+    font-size: 1.3em;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    padding: 10px;
+    border-radius: 50%;
+}
+
+.hapus-btn:hover {
+    color: #e74c3c;
+    background-color: rgba(231, 76, 60, 0.1);
+}
+
+/* Total Row in Table */
+.keranjang-table .total-row td {
+    padding-top: 30px;
+    padding-bottom: 0;
+    border-top: 2px solid #eee;
+    font-size: 1.1em;
+    background-color: transparent;
+    box-shadow: none;
+    border-radius: 0;
+}
+
+.keranjang-table .total-row .total-label {
+    text-align: right;
+    font-weight: bold;
+    color: #333;
+}
+.keranjang-table .total-row .total-amount {
+    text-align: right;
+    font-weight: bold;
+    color: #5A3F33;
+}
+
+
+/* --- Card Ringkasan Pesanan (Kanan) --- */
+.keranjang-summary-card {
+    flex: 1;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+    padding: 35px;
+    margin-top: 30px;
+}
+
+.keranjang-summary-card h3 {
+    font-size: 1.7em;
+    color: #5A3F33;
+    margin-bottom: 35px;
+    text-align: left;
+    font-weight: bold;
+}
+
+/* Voucher Section */
+.voucher-section {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.voucher-input {
+    flex: 1;
+    padding: 12px 18px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 0.95em;
+    color: #555;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.voucher-input:focus {
+    border-color: #7C5C4B;
+}
+
+.apply-btn {
+    background-color: #7C5C4B;
+    color: white;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0.95em;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+}
+
+.apply-btn:hover {
+    background-color: #5A3F33;
+}
+
+/* Summary Details */
+.summary-details {
+    margin-bottom: 35px;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    font-size: 1.05em;
+    color: #555;
+}
+
+.summary-item span:first-child {
+    font-weight: normal;
+}
+.summary-item span:last-child {
+    font-weight: bold;
+    color: #333;
+}
+
+.summary-total {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+    padding-top: 25px;
+    border-top: 2px solid #eee;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #5A3F33;
+}
+
+/* Checkout Button */
+.checkout-btn {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 18px 30px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 1.15em;
+    font-weight: bold;
+    width: 100%;
+    transition: background-color 0.2s ease;
+}
+
+.checkout-btn:hover {
+    background-color: #000;
+}
+
+/* Empty Cart Message */
+.keranjang-empty {
+    text-align: center;
+    font-size: 1.3em;
+    color: #777;
+    margin-top: 50px;
+}
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 992px) {
+    .keranjang-content {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 30px;
+    }
+
+    .keranjang-items-card,
+    .keranjang-summary-card {
+        flex: auto;
+        margin-top: 0;
+    }
+
+    .keranjang-summary-card {
+        margin-top: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .keranjang-container {
+        margin: 30px auto;
+        padding: 0 15px;
+    }
+
+    .keranjang-container h1 {
+        font-size: 2em;
+        margin-bottom: 25px;
+    }
+
+    .keranjang-items-card,
+    .keranjang-summary-card {
+        padding: 25px;
+    }
+
+    .keranjang-table thead th {
+        font-size: 0.85em;
+        padding: 12px 15px; /* Ditingkatkan untuk mobile */
+    }
+
+    .keranjang-table tbody td {
+        font-size: 0.85em;
+        padding: 12px 15px; /* Ditingkatkan untuk mobile */
+    }
+
+    .product-info img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .product-name {
+        font-size: 0.95em;
+    }
+
+    .product-description {
+        font-size: 0.75em;
+    }
+
+    .qty-btn {
+        padding: 5px 10px;
+        font-size: 0.9em;
+    }
+
+    .qty-input {
+        width: 35px; /* Ditingkatkan untuk mobile */
+        padding: 5px 0;
+        font-size: 0.85em;
+    }
+
+    .hapus-btn {
+        font-size: 1.2em;
+    }
+
+    .keranjang-table .total-row td {
+        font-size: 0.95em;
+    }
+
+    .keranjang-summary-card h3 {
+        font-size: 1.4em;
+        margin-bottom: 25px;
+    }
+
+    .voucher-input, .apply-btn {
+        padding: 10px 15px;
+        font-size: 0.9em;
+    }
+
+    .summary-item, .summary-total {
+        font-size: 0.95em;
+    }
+
+    .checkout-btn {
+        padding: 15px 25px;
+        font-size: 1.1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .keranjang-container {
+        padding: 0 10px;
+    }
+
+    .keranjang-container h1 {
+        font-size: 1.6em;
+        margin-bottom: 20px;
+    }
+
+    .keranjang-items-card,
+    .keranjang-summary-card {
+        padding: 20px;
+    }
+
+    .keranjang-table tbody tr {
+        padding: 15px;
+        margin-bottom: 10px;
+    }
+
+    .keranjang-table tbody td {
+        padding-left: 45%;
+    }
+
+    .keranjang-table tbody td:before {
+        width: 40%;
+    }
+
+    .keranjang-table .total-row {
+        padding: 15px;
+        margin-top: 15px;
+    }
 }

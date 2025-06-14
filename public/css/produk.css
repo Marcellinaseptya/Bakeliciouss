@@ -45,3 +45,299 @@
 .keranjang-btn:hover {
     background-color: #e556a2;
 }
+
+/* produk.css - Versi dengan card lebih kecil */
+
+/* General Body Styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Example font, choose one that fits or import from Google Fonts */
+    margin: 0;
+    padding: 0;
+    background-color: #F8F5EE; /* Light, warm beige from the image background */
+    color: #333; /* Dark grey for general text */
+}
+
+/* Banner Section */
+.banner {
+    position: relative;
+    /* Ini membuat lebar banner mengambil 100% lebar viewport (layar browser) */
+    width: 100vw;
+    /* Ini adalah trik CSS untuk menggeser banner ke kiri agar menempel sempurna di tepi kiri browser, 
+       mengatasi padding atau margin dari elemen induk yang mungkin ada. */
+    margin-left: calc(50% - 50vw);
+    
+    height: 500px; /* Tinggi banner, bisa disesuaikan */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #5A3F33; /* Warna fallback jika gambar tidak muncul */
+}
+
+.banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Memastikan gambar mengisi area tanpa terdistorsi */
+    object-position: center;
+    filter: brightness(0.8); /* Meredupkan gambar sedikit agar teks lebih terbaca */
+}
+
+.banner-title {
+    position: absolute;
+    color: white;
+    font-size: 3em;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+
+/* Alert Messages (e.g., success messages) */
+.alert {
+    padding: 12px; /* Padding sedikit dikurangi */
+    margin: 15px auto; /* Margin sedikit dikurangi */
+    border-radius: 8px;
+    font-size: 1em; /* Ukuran font disesuaikan */
+    text-align: center;
+    max-width: 700px; /* Lebar maksimal disesuaikan */
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+/* Product Sections */
+.produk-section {
+    padding: 30px 15px; /* Padding section dikurangi */
+    max-width: 1200px; /* Tetap sama untuk lebar konten */
+    margin: 0 auto; /* Center the section */
+}
+
+.produk-section h2 {
+    font-size: 2em; /* Ukuran judul section dikurangi */
+    color: #5A3F33; /* Dark brown for headings */
+    text-align: center;
+    margin-bottom: 30px; /* Margin bawah dikurangi */
+    position: relative;
+    padding-bottom: 8px; /* Padding bawah dikurangi */
+}
+
+.produk-section h2::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 70px; /* Lebar garis dikurangi */
+    height: 2px; /* Ketebalan garis dikurangi */
+    background-color: #7C5C4B; /* A complementary brown color */
+    border-radius: 2px;
+}
+
+/* Product Grid */
+.produk-grid {
+    display: grid;
+    /* Menyesuaikan minmax agar bisa memuat lebih banyak card dalam satu baris */
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px; /* Spasi antar card dikurangi */
+    justify-content: center;
+}
+
+/* Product Card */
+.produk-card {
+    background-color: white;
+    border-radius: 12px; /* Sudut lebih melengkung */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Bayangan sedikit dikurangi */
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.produk-card:hover {
+    transform: translateY(-5px); /* Efek angkat sedikit dikurangi */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Bayangan hover disesuaikan */
+}
+
+.produk-card img {
+    width: 100%;
+    height: 150px; /* Tinggi gambar dikurangi signifikan */
+    object-fit: cover;
+    border-top-left-radius: 12px; /* Sesuaikan dengan card border radius */
+    border-top-right-radius: 12px;
+}
+
+.produk-card h3 {
+    font-size: 1.3em; /* Ukuran font nama produk dikurangi */
+    color: #5A3F33;
+    margin: 15px 10px 8px; /* Margin dikurangi */
+}
+
+.produk-card p {
+    font-size: 1.1em; /* Ukuran font harga dikurangi */
+    font-weight: bold;
+    color: #7C5C4B;
+    margin-bottom: 12px; /* Margin dikurangi */
+}
+
+/* Add to Cart Form Elements */
+.produk-card form {
+    padding: 0 15px 15px; /* Padding form dikurangi */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px; /* Spasi antar elemen form dikurangi */
+    margin-top: auto;
+}
+
+.produk-card label {
+    font-size: 0.9em; /* Ukuran font label dikurangi */
+    color: #666;
+    margin-bottom: 3px;
+}
+
+.produk-card input[type="number"] {
+    width: 60px; /* Lebar input jumlah dikurangi */
+    padding: 6px; /* Padding input dikurangi */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 0.9em; /* Ukuran font input dikurangi */
+    -moz-appearance: textfield;
+}
+
+/* Hide spin buttons for Chrome, Safari, Edge, Opera */
+.produk-card input[type="number"]::-webkit-outer-spin-button,
+.produk-card input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.keranjang-btn {
+    background-color: #7C5C4B;
+    color: white;
+    border: none;
+    padding: 10px 20px; /* Padding tombol dikurangi */
+    border-radius: 6px; /* Sudut tombol dikurangi */
+    cursor: pointer;
+    font-size: 0.95em; /* Ukuran font tombol dikurangi */
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 90%; /* Lebar tombol disesuaikan */
+    max-width: 160px; /* Lebar maksimal tombol dikurangi */
+    margin-top: 8px; /* Margin atas dikurangi */
+}
+
+.keranjang-btn:hover {
+    background-color: #5A3F33;
+    transform: translateY(-2px);
+}
+
+/* Empty State */
+.produk-section > p {
+    text-align: center;
+    font-size: 1.1em;
+    color: #777;
+    margin-top: 20px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .banner {
+        height: 280px;
+    }
+
+    .banner-title {
+        font-size: 2em;
+    }
+
+    .produk-section h2 {
+        font-size: 1.8em;
+    }
+
+    /* Untuk tablet, card bisa tetap 2-3 kolom */
+    .produk-grid {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 15px;
+    }
+
+    .produk-card img {
+        height: 120px;
+    }
+
+    .produk-card h3 {
+        font-size: 1.2em;
+        margin: 12px 8px 6px;
+    }
+
+    .produk-card p {
+        font-size: 1em;
+    }
+
+    .keranjang-btn {
+        padding: 8px 18px;
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    .banner {
+        height: 200px;
+    }
+
+    .banner-title {
+        font-size: 1.8em;
+    }
+
+    .produk-section {
+        padding: 15px 10px;
+    }
+
+    .produk-section h2 {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+    }
+
+    /* Untuk mobile, card bisa menjadi 1 atau 2 kolom yang lebih kecil */
+    .produk-grid {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Mengatur 2 kolom kecil */
+        gap: 10px;
+    }
+
+    .produk-card img {
+        height: 100px;
+    }
+
+    .produk-card h3 {
+        font-size: 1.1em;
+        margin: 10px 5px 5px;
+    }
+
+    .produk-card p {
+        font-size: 0.9em;
+    }
+
+    .produk-card form {
+        padding: 0 10px 10px;
+        gap: 5px;
+    }
+
+    .produk-card label {
+        font-size: 0.8em;
+    }
+
+    .produk-card input[type="number"] {
+        width: 50px;
+        font-size: 0.8em;
+        padding: 4px;
+    }
+
+    .keranjang-btn {
+        padding: 7px 15px;
+        font-size: 0.85em;
+        max-width: 120px;
+    }
+}

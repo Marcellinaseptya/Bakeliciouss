@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="{{ asset('css/produk.css') }}">
 
 <div class="banner">
-    <img src="{{ asset('storage/banner-cake.jpg') }}" alt="Cake">
+    <img src="{{ asset('img/why4.jpeg') }}" alt="Cake">
     <h1 class="banner-title">Semua Produk</h1>
 </div>
 
