@@ -9,7 +9,7 @@ class Pertanyaan extends Model
 {
     use HasFactory;
 
-    protected $table = 'pertanyaan'; // <- pastikan ini sesuai nama tabel di database
+    protected $table = 'pertanyaan'; 
 
     protected $fillable = [
         'nama',
@@ -17,10 +17,9 @@ class Pertanyaan extends Model
         'isi',
     ];
 
-    // app/Models/Pertanyaan.php
-public function jawabans()
-{
-    return $this->hasMany(Jawaban::class, 'pertanyaan_id');
-}
+    public function jawabans()
+    {
+        return $this->hasMany(Jawaban::class, 'pertanyaan_id');
+    }
 
 }

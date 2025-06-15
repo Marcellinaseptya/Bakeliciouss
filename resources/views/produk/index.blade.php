@@ -1,4 +1,4 @@
-@extends('layouts.navbar')
+@extends('layouts.app')
 
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/produk.css') }}">
@@ -20,7 +20,7 @@
             <div class="produk-card">
                 <img src="{{ asset('storage/' . $item->gambar) }}" alt="{{ $item->nama }}">
                 <h3>{{ $item->nama }}</h3>
-                <p>Rp{{ number_format($item->harga, 0, ',', '.') }}</p>
+                <p>Rp{{ number_format($item->harga) }}</p>
 
                 <form method="POST" action="{{ route('keranjang.tambah') }}">
                     @csrf
@@ -44,7 +44,7 @@
             <div class="produk-card">
                 <img src="{{ asset('storage/' . $item->gambar) }}" alt="{{ $item->nama }}">
                 <h3>{{ $item->nama }}</h3>
-                <p>Rp{{ number_format($item->harga, 0, ',', '.') }}</p>
+                <p>Rp{{ number_format($item->harga) }}</p>
 
                 <form method="POST" action="{{ route('keranjang.tambah') }}">
                     @csrf
@@ -58,5 +58,7 @@
             <p>Tidak ada produk Pastry.</p>
         @endforelse
     </div>
+    
 </section>
+@include('layouts.footer')
 @endsection

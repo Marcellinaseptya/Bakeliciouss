@@ -9,9 +9,8 @@ class Jawaban extends Model
 {
     use HasFactory;
 
-    protected $table = 'jawaban'; // <- atau 'jawabans' jika itu nama tabelmu
+    protected $table = 'jawaban'; 
 
-    // app/Models/Jawaban.php
     protected $fillable = ['pertanyaan_id', 'nama', 'isi'];
 
 

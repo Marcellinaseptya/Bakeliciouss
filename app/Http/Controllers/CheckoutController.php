@@ -18,13 +18,11 @@ class CheckoutController extends Controller
 
         DB::beginTransaction();
         try {
-            // Hitung total harga
             $total = 0;
             foreach ($keranjang as $item) {
                 $total += $item['harga'] * $item['jumlah'];
             }
 
-            // Simpan ke tabel transaksi
             $transaksi = Transaksi::create([
                 'total' => $total,
                 'status' => 'pending',
@@ -33,7 +31,6 @@ class CheckoutController extends Controller
                 'no_hp' => null,
             ]);
 
-            // Simpan ke detail_transaksi
             foreach ($keranjang as $id_produk => $item) {
                 DetailTransaksi::create([
                     'transaksi_id' => $transaksi->id,
@@ -47,7 +44,6 @@ class CheckoutController extends Controller
             session()->forget('keranjang');
             DB::commit();
 
-            // Arahkan ke form isi data
             return redirect()->route('transaksi.form.isiData', ['id' => $transaksi->id])
                  ->with('success', 'Checkout berhasil!');
 
@@ -57,14 +53,12 @@ class CheckoutController extends Controller
         }
     }
 
-    // Form untuk mengisi data pelanggan
     public function formIsiData($id)
     {
         $transaksi = Transaksi::findOrFail($id);
         return view('transaksi.isi_data', compact('transaksi'));
     }
 
-    // Menyimpan data pelanggan
     public function simpanDataPelanggan(Request $request, $id)
     {
         $request->validate([

@@ -9,31 +9,28 @@ class Produk extends Model
 {
     use HasFactory;
 
-    protected $table = 'produk'; // Kalau nama tabel kamu memang "produk", ini oke
-    protected $primaryKey = 'id_produk'; // Pastikan di database memang pakai ini
+    protected $table = 'produk'; 
+    protected $primaryKey = 'id_produk'; 
 
     protected $fillable = [
         'nama',
         'deskripsi',
         'harga',
         'stok',
-        'kategori', // Tambahkan ini
+        'kategori', 
         'gambar',
     ];
 
-    // Opsional: casting (bisa bantu saat akses angka)
     protected $casts = [
         'harga' => 'integer',
         'stok' => 'integer',
     ];
 
-    // Relasi ke Rating
     public function rating()
     {
         return $this->hasMany(Rating::class, 'id_produk');
     }
 
-    // Relasi ke Transaksi melalui tabel pivot "riwayat_transaksi"
     public function transaksi()
     {
         return $this->belongsToMany(

@@ -1,0 +1,55 @@
+body {
+    background-color: #E9DCCC;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.card-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    flex: 1;
+    min-width: 200px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.card h4 {
+    margin: 0 0 10px;
+    font-size: 16px;
+    color: #333;
+}
+
+.card p {
+    font-size: 24px;
+    font-weight: bold;
+    color: #452725;
+}
+
+section.recent-activity {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+section.recent-activity h4 {
+    margin-bottom: 15px;
+    color: #452725;
+}
+
+section.recent-activity ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+section.recent-activity li {
+    margin-bottom: 10px;
+    border-left: 4px solid #452725;
+    padding-left: 10px;
+}

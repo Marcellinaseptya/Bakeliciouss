@@ -1,3 +1,6 @@
+@extends('layouts.app')
+
+@section('content')
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -6,7 +9,7 @@
     <link rel="stylesheet" href="{{ asset('css/komunitas.css') }}">
 </head>
 <body>
-    @include('layouts.navbar')
+
     <a href="{{ route('komunitas.index') }}" class="back-link">← Kembali ke Forum</a>
 
     <div class="card">
@@ -20,7 +23,7 @@
     {{-- Modal Form Jawaban --}}
     <div id="jawabModal" class="modal">
         <div class="modal-content">
-            <a href="#" class="close">&times;</a>
+            <a href="#jawabModal" class="open-button">+ Jawab Pertanyaan</a>
             <h2>Jawab Pertanyaan</h2>
             <form action="{{ route('komunitas.jawab', $pertanyaan->id) }}" method="POST">
                 @csrf

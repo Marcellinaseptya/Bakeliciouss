@@ -1,79 +1,131 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\Api; 
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Produk; 
 
 class ProdukController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        $produk = Produk::all(); // Ambil semua produk dari database
-        return response()->json(['success' => true, 'data' => $produks], 200);
+        try {
+            
+            $produks = Produk::all();
+
+            
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Daftar produk berhasil diambil',
+                'data' => $produks
+            ], 200);
+        } catch (\Exception $e) {
+
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Gagal mengambil data produk: ' . $e->getMessage(),
+                'code' => $e->getCode()
+            ], 500);
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request) {
-    $request->validate([
-            'nama' => 'required|string',
+   
+    public function store(Request $request)
+    {
+        $validatedData = $request->validate([
+            'nama' => 'required|string|max:255',
             'deskripsi' => 'nullable|string',
             'harga' => 'required|numeric',
             'stok' => 'required|integer',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'kategori' => 'required|string|max:255',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', 
         ]);
 
-        $gambarPath = null;
-        if ($request->hasFile('gambar')) {
-        $gambarPath = $request->file('gambar')->store('produk', 'public');
+        try {
+            if ($request->hasFile('gambar')) {
+                $validatedData['gambar'] = $request->file('gambar')->store('produk', 'public');
+            }
+
+            $produk = Produk::create($validatedData);
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Produk berhasil ditambahkan',
+                'data' => $produk
+            ], 201); 
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Gagal menambahkan produk: ' . $e->getMessage()
+            ], 500);
         }
-
-        Produk::create([
-            'nama' => $request->nama,
-            'deskripsi' => $request->deskripsi,
-            'harga' => $request->harga,
-            'stok' => $request->stok,
-            'gambar' => $gambarPath,
-        ]);
-    
-        return redirect('/produk')->with('success', 'Produk berhasil ditambahkan!');
-
-        $produk = Produk::create($request->all());
-        return response()->json($produk, 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show($id)
     {
-        return response()->json(Produk::findOrFail($id), 200);
-
+        try {
+            $produk = Produk::findOrFail($id);
+            return response()->json([
+                'status' => 'success',
+                'data' => $produk
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Produk tidak ditemukan'
+            ], 404); 
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+
+    public function update(Request $request, $id)
     {
-        $produk = Produk::findOrFail($id);
-        $produk->update($request->all());
-        return response()->json($produk, 200);
+        try {
+            $produk = Produk::findOrFail($id);
+            $validatedData = $request->validate([
+                'nama' => 'required|string|max:255',
+                'deskripsi' => 'nullable|string',
+                'harga' => 'required|numeric',
+                'stok' => 'required|integer',
+                'kategori' => 'required|string|max:255',
+                'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            ]);
+
+            if ($request->hasFile('gambar')) {
+                $validatedData['gambar'] = $request->file('gambar')->store('produk', 'public');
+            }
+
+            $produk->update($validatedData);
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Produk berhasil diperbarui',
+                'data' => $produk
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Gagal memperbarui produk: ' . $e->getMessage()
+            ], 500);
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+
+    public function destroy($id)
     {
-        $produk = Produk::findOrFail($id);
-        $produk->delete();
-        return redirect('/produk');
-        return response()->json(['success' => true, 'message' => 'Menu berhasil dihapus.'], 200);
+        try {
+            $produk = Produk::findOrFail($id);
+            $produk->delete();
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Produk berhasil dihapus'
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Gagal menghapus produk: ' . $e->getMessage()
+            ], 500);
+        }
     }
 }

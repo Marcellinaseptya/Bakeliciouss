@@ -6,21 +6,19 @@ use App\Models\Produk;
 use App\Models\Keranjang;
 use Illuminate\Http\Request;
 
-class ProdukController extends Controller
+class AdminProdukController extends Controller
 {
     public function index(Request $request)
     {
         {
-            $cake = Produk::where('kategori', 'Cake')->get();
-            $pastry = Produk::where('kategori', 'Pastry')->get();
-
-            return view('produk.index', compact('cake', 'pastry'));
+            $produk = Produk::all();
+            return view('admin.produk.index', compact('produk'));
         }
     }
 
     public function create()
     {
-        return view('produk.create');
+        return view('admin.produk.create');
     }
 
     public function store(Request $request)
@@ -47,8 +45,9 @@ class ProdukController extends Controller
             'kategori' => $request->kategori,
             'gambar' => $gambarPath,
         ]);
+       
 
-        return redirect('produk')->with('success', 'Produk berhasil ditambahkan!');
+        return redirect('/admin/produk')->with('success', 'Produk berhasil ditambahkan!');
     }
 
     public function show($id)
@@ -59,7 +58,7 @@ class ProdukController extends Controller
     public function edit(string $id)
     {
         $item = Produk::findOrFail($id);
-        return view('produk.edit', compact('item'));
+        return view('admin.produk.edit', compact('item'));
     }
 
     public function update(Request $request, $id)
@@ -84,13 +83,13 @@ class ProdukController extends Controller
 
         $produk->update($data);
 
-        return redirect('/produk')->with('success', 'Produk berhasil diperbarui!');
+        return redirect('/admin/produk')->with('success', 'Produk berhasil diperbarui!');
     }
 
     public function destroy($id)
     {
         $produk = Produk::findOrFail($id);
         $produk->delete();
-        return redirect('/produk')->with('success', 'Produk berhasil dihapus.');
+        return redirect('/admin/produk')->with('success', 'Produk berhasil dihapus.');
     }
 }

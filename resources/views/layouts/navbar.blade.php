@@ -110,8 +110,3 @@ body {
     <button class="signin">Sign in</button>
   </div>
 </header>
-
-<!-- ⬇️ Tambahkan ini -->
-<div class="container" style="padding: 2rem;">
-    @yield('content')
-</div>

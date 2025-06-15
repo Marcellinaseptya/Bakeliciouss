@@ -10,7 +10,7 @@ class Kategori extends Model {
 
     protected $table = 'kategori';
 
-    protected $primaryKey = 'id'; // Secara default sudah 'id'
+    protected $primaryKey = 'id'; 
 
     protected $fillable = [
         'nama_kategori', 'deskripsi'

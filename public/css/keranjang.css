@@ -176,7 +176,6 @@ body {
     color: #888;
 }
 
-/* Styling for Quantity Control */
 .quantity-control {
     text-align: center;
 }
@@ -206,7 +205,7 @@ body {
 }
 
 .qty-input {
-    width: 40px; /* DITINGKATKAN: Lebar input kuantitas */
+    width: 40px; 
     text-align: center;
     border: none;
     padding: 8px 0;
@@ -223,7 +222,6 @@ body {
     margin: 0;
 }
 
-/* Styling for Action (Delete) Button */
 .action-cell {
     text-align: center;
 }
@@ -244,7 +242,6 @@ body {
     background-color: rgba(231, 76, 60, 0.1);
 }
 
-/* Total Row in Table */
 .keranjang-table .total-row td {
     padding-top: 30px;
     padding-bottom: 0;
@@ -267,7 +264,6 @@ body {
 }
 
 
-/* --- Card Ringkasan Pesanan (Kanan) --- */
 .keranjang-summary-card {
     flex: 1;
     background-color: white;
@@ -285,7 +281,6 @@ body {
     font-weight: bold;
 }
 
-/* Voucher Section */
 .voucher-section {
     display: flex;
     gap: 15px;
@@ -323,7 +318,6 @@ body {
     background-color: #5A3F33;
 }
 
-/* Summary Details */
 .summary-details {
     margin-bottom: 35px;
 }
@@ -355,9 +349,8 @@ body {
     color: #5A3F33;
 }
 
-/* Checkout Button */
 .checkout-btn {
-    background-color: #333;
+    background-color: #452725 ;
     color: white;
     border: none;
     padding: 18px 30px;
@@ -370,10 +363,9 @@ body {
 }
 
 .checkout-btn:hover {
-    background-color: #000;
+    background-color: #E9DCCC;
 }
 
-/* Empty Cart Message */
 .keranjang-empty {
     text-align: center;
     font-size: 1.3em;
@@ -382,7 +374,6 @@ body {
 }
 
 
-/* --- Responsive Adjustments --- */
 @media (max-width: 992px) {
     .keranjang-content {
         flex-direction: column;
@@ -419,12 +410,12 @@ body {
 
     .keranjang-table thead th {
         font-size: 0.85em;
-        padding: 12px 15px; /* Ditingkatkan untuk mobile */
+        padding: 12px 15px; 
     }
 
     .keranjang-table tbody td {
         font-size: 0.85em;
-        padding: 12px 15px; /* Ditingkatkan untuk mobile */
+        padding: 12px 15px; 
     }
 
     .product-info img {
@@ -446,7 +437,7 @@ body {
     }
 
     .qty-input {
-        width: 35px; /* Ditingkatkan untuk mobile */
+        width: 35px; 
         padding: 5px 0;
         font-size: 0.85em;
     }

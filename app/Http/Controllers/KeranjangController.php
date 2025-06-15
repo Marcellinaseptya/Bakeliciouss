@@ -7,7 +7,6 @@ use App\Models\Produk;
 
 class KeranjangController extends Controller
 {
-    // Menambahkan produk ke keranjang
     public function store(Request $request)
     {
         $request->validate([
@@ -38,7 +37,6 @@ class KeranjangController extends Controller
         return redirect()->back()->with('success', 'Produk berhasil ditambahkan ke keranjang!');
     }
 
-    // Menampilkan isi keranjang
     public function index()
     {
         $keranjang = session()->get('keranjang', []);
@@ -51,7 +49,6 @@ class KeranjangController extends Controller
         return view('keranjang.index', compact('keranjang', 'total'));
     }
 
-    // Menghapus item dari keranjang
     public function hapus($id)
     {
         $keranjang = session()->get('keranjang', []);

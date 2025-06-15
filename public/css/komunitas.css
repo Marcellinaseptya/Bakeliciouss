@@ -1,69 +1,237 @@
-.pertanyaan-card {
-    background-color: #fffaf5;
-    border: 2px solid #E9DCCC;
-    border-radius: 1rem;
-    padding: 1.5rem;
-    margin-bottom: 2rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-}
-
-.pertanyaan-card h3 {
-    font-size: 1.25rem;
-    color: #452725;
-    font-weight: bold;
-}
-
-.pertanyaan-card .author {
-    color: #5a382f;
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
-}
-
-.pertanyaan-card .isi {
-    margin-bottom: 1rem;
-}
-
-.jawaban-wrapper {
-    background-color: #f8f1ea;
-    padding: 0.75rem;
-    border-radius: 0.75rem;
-    margin-bottom: 1rem;
-}
-
-.jawaban-wrapper ul {
-    list-style: disc;
-    padding-left: 1.25rem;
-}
-
-.forum-form,
-.jawaban-form {
+body {
     background-color: #E9DCCC;
-    padding: 1rem;
-    border-radius: 0.75rem;
-    margin-bottom: 2rem;
+    font-family: Arial, sans-serif;
+    color: #452725;
+    margin: 0;
+    padding: 0;
 }
 
-.forum-form input,
-.jawaban-form input,
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+h2 {
+    color: #452725;
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.forum-form input[type="text"],
 .forum-form textarea,
+.jawaban-form input[type="text"],
 .jawaban-form textarea {
     width: 100%;
-    padding: 0.5rem;
+    padding: 10px;
+    margin-bottom: 12px;
+    border-radius: 6px;
     border: 1px solid #ccc;
-    margin-bottom: 0.75rem;
-    border-radius: 0.5rem;
+    font-size: 14px;
 }
 
 .forum-form button,
 .jawaban-form button {
     background-color: #452725;
     color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    transition: background-color 0.3s;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
 }
 
 .forum-form button:hover,
 .jawaban-form button:hover {
-    background-color: #5a382f;
+    background-color: #5a342f;
+}
+
+.pertanyaan-card {
+    background-color: #fdf7f0;
+    border: 1px solid #ccc;
+    border-left: 6px solid #452725;
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 20px;
+}
+
+.pertanyaan-card h3 {
+    margin-top: 0;
+    font-size: 20px;
+    color: #452725;
+}
+
+.pertanyaan-card .author {
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.pertanyaan-card .isi {
+    margin-bottom: 10px;
+    font-size: 15px;
+}
+
+.jawaban-wrapper {
+    background: #f3e9df;
+    padding: 10px;
+    border-radius: 6px;
+    margin-top: 10px;
+}
+
+.jawaban-wrapper ul {
+    padding-left: 18px;
+}
+
+.jawaban-wrapper li {
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-gray-500,
+.text-gray-600 {
+    color: #777;
+}
+
+body {
+    background-color: #E9DCCC;
+    font-family: Arial, sans-serif;
+    color: #452725;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: #452725;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.back-link {
+    display: inline-block;
+    margin: 20px;
+    color: #452725;
+    font-weight: bold;
+}
+
+.card {
+    background-color: white;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 700px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.card h1 {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.card p {
+    margin: 5px 0;
+    font-size: 15px;
+}
+
+h3 {
+    text-align: center;
+    margin-top: 40px;
+    color: #452725;
+}
+
+.open-button {
+    display: inline-block;
+    margin: 0 20px 20px;
+    background-color: #452725;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.open-button:hover {
+    background-color: #5a342f;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    padding-top: 60px;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal:target {
+    display: block;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: auto;
+    padding: 30px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    color: #452725;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+}
+
+.modal-content label {
+    font-weight: bold;
+    display: block;
+    margin: 10px 0 5px;
+}
+
+.modal-content input[type="text"],
+.modal-content textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.modal-content button {
+    background-color: #452725;
+    color: white;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.modal-content button:hover {
+    background-color: #5a342f;
+}
+
+.close {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    font-size: 28px;
+    text-decoration: none;
+    color: #aaa;
+}
+
+.close:hover {
+    color: #000;
 }

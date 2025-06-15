@@ -484,7 +484,6 @@
   </section>
 
   <section class="customer-service">
-    <!-- <h3>Customer Service</h3> -->
     <div class="icons">
       <div class="item">
         <img src="/img/ig.png" alt="Instagram">

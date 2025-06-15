@@ -1,10 +1,14 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+</head>
+<body>
+    <h1>Dashboard Admin</h1>
+    <p>Total Produk: {{ $totalProduk }}</p>
+    <p>Total Transaksi: {{ $totalTransaksi }}</p>
 
-@section('content')
-@include('layouts.navbar')
-
-<div class="container mx-auto p-6">
-    <h1 class="text-3xl font-bold text-center mb-6">Dashboard Admin</h1>
-    <p class="text-center">Selamat datang, Admin!</p>
-</div>
-@endsection
+    <a href="/admin/produk">Kelola Produk</a> |
+    <a href="/admin/transaksi">Lihat Transaksi</a>
+</body>
+</html>
